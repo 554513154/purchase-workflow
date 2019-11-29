@@ -308,7 +308,7 @@ class PurchaseRequestLine(models.Model):
 
     @api.multi
     def _compute_supplier_id(self):
-        for rec in self:
+        for rec in self.sudo():
             if rec.product_id:
                 if rec.product_id.seller_ids:
                     rec.supplier_id = rec.product_id.seller_ids[0].name
